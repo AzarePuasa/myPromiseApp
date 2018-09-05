@@ -1,8 +1,28 @@
 <app-layout>
   <div class="jumbotron">
-    <h1>Angular CLI v6 + Bootstrap & FontAwesome</h1>
+    <h1>Angular RxJs YouTube Searcher</h1>
     <p>
-      In this tutorial you learn how to use Angular CLI v6 with Bootstrap and FontAwesome!
+      In this tutorial you will be building Youtube searcher using 
+      Angular Observables and Promises.
     </p>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 col1">
+        <form [formGroup]="searchForm" class="searchform">
+          <label for="search">Search YouTube</label>
+          <br />
+          <hr>
+          <input formControlName="search" id="search" />
+          <div *ngFor="let result of results | async" class="alert alert-secondary">
+            <a [href]="'https://www.youtube.com/watch?v=' + result.id.videoId" target="_blank">
+          {{result.snippet.title}}
+            </a>
+            <p>{{result.snippet.description}}</p>
+            <img [src]="result.snippet.thumbnails.default.url" style="width: 100%; max-width: 250px;" />
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </app-layout>
